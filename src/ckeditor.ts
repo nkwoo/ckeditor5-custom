@@ -43,7 +43,7 @@ import {
 } from '@ckeditor/ckeditor5-special-characters';
 import {Table, TableToolbar} from '@ckeditor/ckeditor5-table';
 import {TextTransformation} from '@ckeditor/ckeditor5-typing';
-import {Base64UploadAdapter, SimpleUploadAdapter} from '@ckeditor/ckeditor5-upload';
+import {SimpleUploadAdapter} from '@ckeditor/ckeditor5-upload';
 import {HtmlEmbed} from "@ckeditor/ckeditor5-html-embed";
 import {Video, VideoResize, VideoStyle, VideoToolbar, VideoUpload} from "./plugins/video-upload";
 
@@ -85,8 +85,8 @@ class Editors extends ClassicEditor {
         Paragraph,
         PasteFromOffice,
         RemoveFormat,
-        Base64UploadAdapter,
-        // SimpleUploadAdapter,
+        // Base64UploadAdapter,
+        SimpleUploadAdapter,
         SourceEditing,
         SpecialCharacters,
         SpecialCharactersArrows,
@@ -143,8 +143,8 @@ class Editors extends ClassicEditor {
                 'link',
                 'imageInsert',
                 'mediaEmbed',
+                'videoUpload',
                 'htmlEmbed',
-                'videoUpload'
             ],
             shouldNotGroupWhenFull: true
         },
