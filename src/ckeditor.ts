@@ -50,6 +50,13 @@ import {Video, VideoResize, VideoStyle, VideoToolbar, VideoUpload} from "./plugi
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
 
+Object.assign(window.CKEDITOR_TRANSLATIONS['ko'].dictionary, {
+	'Upload Video': '동영상 업로드',
+	'Original': '원본',
+	'Left aligned video': '동영상 왼쪽 정렬',
+	'Centered video': '동영상 중앙 정렬',
+	'Right aligned video': '동영상 오른쪽 정렬',
+});
 
 class Editors extends ClassicEditor {
     public static override builtinPlugins = [
@@ -217,6 +224,38 @@ class Editors extends ClassicEditor {
         },
         htmlEmbed: {
             showPreviews: true
+        },
+        fontFamily: {
+            options: [
+                'default',
+                'Arial, Helvetica, sans-serif',
+                'Courier New, Courier, monospace',
+                'Georgia, serif',
+                'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                'Tahoma, Geneva, sans-serif',
+                'Times New Roman, Times, serif',
+                'Trebuchet MS, Helvetica, sans-serif',
+                'Verdana, Geneva, sans-serif'
+            ],
+            supportAllValues: true
+        },
+        fontSize: {
+            options: [
+                9,
+                10,
+                11,
+                12,
+                14,
+                'default',
+                18,
+                20,
+                22,
+                24,
+                26,
+                28,
+                36,
+                48
+            ]
         }
     };
 }
