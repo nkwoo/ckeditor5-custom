@@ -20,3 +20,11 @@ function handleSampleError( error ) {
 	console.error( message );
 	console.error( error );
 }
+
+Object.assign(window.CKEDITOR_TRANSLATIONS['ko'].dictionary, {
+	'Upload Video': '동영상 업로드',
+	'Original': '원본',
+	'Left aligned video': '동영상 왼쪽 정렬',
+	'Centered video': '동영상 중앙 정렬',
+	'Right aligned video': '동영상 오른쪽 정렬',
+});

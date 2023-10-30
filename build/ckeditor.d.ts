@@ -25,10 +25,11 @@ import { SourceEditing } from '@ckeditor/ckeditor5-source-editing';
 import { SpecialCharacters, SpecialCharactersArrows, SpecialCharactersCurrency, SpecialCharactersEssentials, SpecialCharactersLatin, SpecialCharactersMathematical, SpecialCharactersText } from '@ckeditor/ckeditor5-special-characters';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
-import { SimpleUploadAdapter } from '@ckeditor/ckeditor5-upload';
+import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
 import { HtmlEmbed } from "@ckeditor/ckeditor5-html-embed";
-declare class Editor extends ClassicEditor {
-    static builtinPlugins: (typeof Alignment | typeof AutoImage | typeof Autoformat | typeof BlockQuote | typeof Bold | typeof CloudServices | typeof Essentials | typeof FontBackgroundColor | typeof FontColor | typeof FontFamily | typeof FontSize | typeof GeneralHtmlSupport | typeof Heading | typeof HorizontalLine | typeof Image | typeof ImageCaption | typeof ImageInsert | typeof ImageResize | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Italic | typeof Link | typeof LinkImage | typeof List | typeof HtmlEmbed | typeof MediaEmbed | typeof MediaEmbedToolbar | typeof Paragraph | typeof PasteFromOffice | typeof RemoveFormat | typeof SimpleUploadAdapter | typeof SourceEditing | typeof SpecialCharacters | typeof SpecialCharactersArrows | typeof SpecialCharactersCurrency | typeof SpecialCharactersEssentials | typeof SpecialCharactersLatin | typeof SpecialCharactersMathematical | typeof SpecialCharactersText | typeof Strikethrough | typeof Table | typeof TableToolbar | typeof TextTransformation | typeof Underline)[];
+import { Video, VideoResize, VideoStyle, VideoToolbar, VideoUpload } from "./plugins/video-upload";
+declare class Editors extends ClassicEditor {
+    static builtinPlugins: (typeof Alignment | typeof TextTransformation | typeof Autoformat | typeof Bold | typeof Italic | typeof Strikethrough | typeof Underline | typeof BlockQuote | typeof Base64UploadAdapter | typeof CloudServices | typeof Essentials | typeof FontBackgroundColor | typeof FontColor | typeof FontFamily | typeof FontSize | typeof Paragraph | typeof Heading | typeof HorizontalLine | typeof GeneralHtmlSupport | typeof AutoImage | typeof Image | typeof ImageCaption | typeof ImageInsert | typeof ImageResize | typeof ImageStyle | typeof ImageToolbar | typeof ImageUpload | typeof Indent | typeof Link | typeof LinkImage | typeof List | typeof MediaEmbed | typeof MediaEmbedToolbar | typeof PasteFromOffice | typeof RemoveFormat | typeof SourceEditing | typeof SpecialCharacters | typeof SpecialCharactersText | typeof SpecialCharactersArrows | typeof SpecialCharactersEssentials | typeof SpecialCharactersLatin | typeof SpecialCharactersCurrency | typeof SpecialCharactersMathematical | typeof Table | typeof TableToolbar | typeof HtmlEmbed | typeof Video | typeof VideoResize | typeof VideoUpload | typeof VideoStyle | typeof VideoToolbar)[];
     static defaultConfig: {
         toolbar: {
             items: string[];
@@ -36,8 +37,20 @@ declare class Editor extends ClassicEditor {
         };
         language: string;
         video: {
-            styles: string[];
+            resizeUnit: string;
+            resizeOptions: ({
+                name: string;
+                value: null;
+                label: string;
+                icon: string;
+            } | {
+                name: string;
+                value: number;
+                label: string;
+                icon: string;
+            })[];
             toolbar: string[];
+            styles: string[];
             upload: {
                 types: string[];
                 allowMultipleFiles: boolean;
@@ -54,4 +67,4 @@ declare class Editor extends ClassicEditor {
         };
     };
 }
-export default Editor;
+export default Editors;
