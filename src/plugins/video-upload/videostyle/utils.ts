@@ -138,7 +138,7 @@ function getDefaultStylesConfiguration(isBlockPluginLoaded: boolean, isInlinePlu
         };
     } else if (isBlockPluginLoaded) {
         return {
-            options: ['block', 'side']
+            options: ['block', 'alignLeft', 'alignCenter', 'alignRight']
         };
     } else if (isInlinePluginLoaded) {
         return {

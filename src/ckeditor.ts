@@ -43,19 +43,23 @@ import {
 } from '@ckeditor/ckeditor5-special-characters';
 import {Table, TableToolbar} from '@ckeditor/ckeditor5-table';
 import {TextTransformation} from '@ckeditor/ckeditor5-typing';
-import {SimpleUploadAdapter} from '@ckeditor/ckeditor5-upload';
+import {FileLoader} from '@ckeditor/ckeditor5-upload';
 import {HtmlEmbed} from "@ckeditor/ckeditor5-html-embed";
 import {Video, VideoResize, VideoStyle, VideoToolbar, VideoUpload} from "./plugins/video-upload";
+import CustomUploadAdapter from './plugins/upload/CustomUploadAdapter';
+import {Editor} from "@ckeditor/ckeditor5-core";
+import {logWarning} from "@ckeditor/ckeditor5-utils";
+import {CustomUpload} from "./plugins/upload/CustomUpload";
 
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
 
 Object.assign(window.CKEDITOR_TRANSLATIONS['ko'].dictionary, {
-	'Upload Video': '동영상 업로드',
-	'Original': '원본',
-	'Left aligned video': '동영상 왼쪽 정렬',
-	'Centered video': '동영상 중앙 정렬',
-	'Right aligned video': '동영상 오른쪽 정렬',
+    'Upload Video': '동영상 업로드',
+    'Original': '원본',
+    'Left aligned video': '동영상 왼쪽 정렬',
+    'Centered video': '동영상 중앙 정렬',
+    'Right aligned video': '동영상 오른쪽 정렬',
 });
 
 class Editors extends ClassicEditor {
@@ -93,7 +97,7 @@ class Editors extends ClassicEditor {
         PasteFromOffice,
         RemoveFormat,
         // Base64UploadAdapter,
-        SimpleUploadAdapter,
+        // SimpleUploadAdapter,
         SourceEditing,
         SpecialCharacters,
         SpecialCharactersArrows,
@@ -115,6 +119,7 @@ class Editors extends ClassicEditor {
     ];
 
     public static override defaultConfig = {
+        extraPlugins: [CustomUploadAdapterPlugin],
         toolbar: {
             items: [
                 'heading',
@@ -258,6 +263,23 @@ class Editors extends ClassicEditor {
             ]
         }
     };
+}
+
+function CustomUploadAdapterPlugin(editor: Editor) {
+    const options = editor.config.get('customUpload') as CustomUpload;
+
+    if (!options) {
+        return;
+    }
+
+    if (!options.uploadUrl) {
+        logWarning('custom-upload-adapter-missing-uploadurl');
+        return;
+    }
+
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader: FileLoader) => {
+        return new CustomUploadAdapter(loader, options);
+    }
 }
 
 export default Editors;

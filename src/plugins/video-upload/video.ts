@@ -1,6 +1,5 @@
-import { Plugin } from '@ckeditor/ckeditor5-core';
+import {Plugin} from '@ckeditor/ckeditor5-core';
 import VideoBlock from './videoblock';
-import VideoInline from './videoinline';
 import './theme/video.css';
 
 export default class Video extends Plugin {
@@ -8,7 +7,7 @@ export default class Video extends Plugin {
      * @inheritDoc
      */
     public static get requires() {
-        return [ VideoBlock, VideoInline] as const;
+        return [VideoBlock] as const;
     }
 
     /**
