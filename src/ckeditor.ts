@@ -41,7 +41,7 @@ import {
     SpecialCharactersMathematical,
     SpecialCharactersText
 } from '@ckeditor/ckeditor5-special-characters';
-import {Table, TableToolbar} from '@ckeditor/ckeditor5-table';
+import {Table, TableCellProperties, TableColumnResize, TableProperties, TableToolbar} from '@ckeditor/ckeditor5-table';
 import {TextTransformation} from '@ckeditor/ckeditor5-typing';
 import {FileLoader} from '@ckeditor/ckeditor5-upload';
 import {HtmlEmbed} from "@ckeditor/ckeditor5-html-embed";
@@ -109,6 +109,9 @@ class Editors extends ClassicEditor {
         Strikethrough,
         Table,
         TableToolbar,
+        TableProperties,
+        TableCellProperties,
+        TableColumnResize,
         TextTransformation,
         Underline,
         Video,
@@ -120,6 +123,7 @@ class Editors extends ClassicEditor {
 
     public static override defaultConfig = {
         extraPlugins: [CustomUploadAdapterPlugin],
+        removePlugins: ['tableAlignment'],
         toolbar: {
             items: [
                 'heading',
@@ -215,7 +219,9 @@ class Editors extends ClassicEditor {
                 'imageTextAlternative',
                 'toggleImageCaption',
                 'imageStyle:inline',
+                'imageStyle:alignBlockLeft',
                 'imageStyle:block',
+                'imageStyle:alignBlockRight',
                 'imageStyle:side',
                 'linkImage'
             ]
@@ -224,7 +230,9 @@ class Editors extends ClassicEditor {
             contentToolbar: [
                 'tableColumn',
                 'tableRow',
-                'mergeTableCells'
+                'mergeTableCells',
+                'tableProperties',
+                'tableCellProperties'
             ]
         },
         htmlEmbed: {
