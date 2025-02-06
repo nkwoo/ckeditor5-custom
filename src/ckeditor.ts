@@ -50,6 +50,7 @@ import CustomUploadAdapter from './plugins/upload/CustomUploadAdapter';
 import {Editor} from "@ckeditor/ckeditor5-core";
 import {logWarning} from "@ckeditor/ckeditor5-utils";
 import {CustomUpload} from "./plugins/upload/CustomUpload";
+import TableSort from './plugins/table-sort/TableSort';
 
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
@@ -112,6 +113,7 @@ class Editors extends ClassicEditor {
         TableProperties,
         TableCellProperties,
         TableColumnResize,
+        TableSort,
         TextTransformation,
         Underline,
         Video,
